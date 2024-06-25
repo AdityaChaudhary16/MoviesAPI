@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MovieService {
@@ -23,5 +25,20 @@ public class MovieService {
 
     public Optional<Movie> movieByTitle(String title) {
         return movieRepository.findMovieByTitle(title);
+    }
+
+//    public Optional<List<Movie>> moviesByGenre(String genres) {
+//        return movieRepository.findMovieByGenres(genres);
+//    }
+
+    public List<Movie> moviesByGenre(String genres) {
+        List<Movie> movies =  new ArrayList<>();
+
+        for(Movie mv : movieRepository.findAll()) {
+            if(mv.getGenres().contains(genres)) {
+                movies.add(mv);
+            }
+        }
+        return movies;
     }
 }
