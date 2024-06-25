@@ -12,4 +12,6 @@ public interface MovieRepository extends MongoRepository<Movie, ObjectId> {
     Optional<Movie> findMovieByTitle(String title);
 
     Optional<List<Movie>> findMovieByGenres(String genres);
+
+
 }

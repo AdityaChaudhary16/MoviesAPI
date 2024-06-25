@@ -41,4 +41,18 @@ public class MovieService {
         }
         return movies;
     }
+
+    public List<Movie> genreSize(Optional<Integer> size) {
+        if(size.isEmpty()) {
+            return movieRepository.findAll();
+        }
+        List<Movie> movies = new ArrayList<>();
+
+        for(Movie mv : movieRepository.findAll()) {
+            if(mv.getGenres().size() >= size.get()) {
+                movies.add(mv);
+            }
+        }
+        return movies;
+    }
 }
